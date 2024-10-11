@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "fpdw2024-2"
+version = "0.1.0"
+description = ""
+authors = ["Felipe Flamarini <felipeflamarini@hotmail.com>"]
+readme = "README.md"
+packages = [{include = "fpdw2024"}]
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.12"
+flask-openapi3 = "^4.0.1"
+flask-openapi3-swagger = "^5.17.14.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
