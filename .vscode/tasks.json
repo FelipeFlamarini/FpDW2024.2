@@ -1,12 +1,25 @@
 {
-    // See https://go.microsoft.com/fwlink/?LinkId=733558
-    // for the documentation about the tasks.json format
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "Run Flask app",
-            "type": "shell",
-            "command": "poetry run flask --app projeto/main.py run --debug"
-        }
-    ]
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "pip freeze > requirements.txt",
+      "type": "shell",
+      "command": "source .venv/bin/activate ; pip freeze > requirements.txt",
+      "problemMatcher": []
+    },
+    {
+      "label": "pip install -r requirements.txt",
+      "type": "shell",
+      "command": "source .venv/bin/activate ; pip install -r requirements.txt",
+      "problemMatcher": []
+    },
+    {
+      "label": "run Flask app",
+      "type": "shell",
+      "command": "source .venv/bin/activate ; flask run --debug",
+      "problemMatcher": []
+    }
+  ]
 }

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="main-container"></div>
+    <script>
+      const FETCH_URL = "http://127.0.0.1:5000";
+      async function getContactInfo() {
+        const response = await fetch(`${FETCH_URL}/aula03/contact`);
+        return await response.json();
+      }
+
+      async function renderContactInfo() {
+        const contactInfo = await getContactInfo();
+        const mainContainer = document.querySelector(".main-container");
+        mainContainer.innerHTML = `
+            <h1>${contactInfo.name}</h1>
+            <p>${contactInfo.email}</p>
+            <p>${contactInfo.phone}</p>
+            <p>${contactInfo.city}, ${contactInfo.state}</p>
+            `;
+      }
+      renderContactInfo();
+    </script>
+  </body>
+</html>
