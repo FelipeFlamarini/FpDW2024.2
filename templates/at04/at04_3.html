@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 03</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body class="bg-gray-100">
+    <script>
+        function createTable() {
+            const table = document.createElement('table');
+            table.className = 'min-w-full divide-y divide-gray-200';
+
+            const thead = document.createElement('thead');
+            thead.className = 'bg-gray-50';
+
+            const tbody = document.createElement('tbody');
+            tbody.className = 'bg-white divide-y divide-gray-200';
+
+            const headerRow = document.createElement('tr');
+            const headers = ['ID', 'Nome', 'Sobrenome', 'Email', 'Ações'];
+            headers.forEach(headerText => {
+                const th = document.createElement('th');
+                th.textContent = headerText;
+                th.scope = 'col';
+                th.className = 'px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider';
+                headerRow.appendChild(th);
+            });
+            thead.appendChild(headerRow);
+
+            for (let i = 1; i <= 997; i++) {
+                const row = document.createElement('tr');
+                row.className = i % 2 === 0 ? 'bg-white' : 'bg-gray-50';
+
+                const idCell = document.createElement('td');
+                idCell.textContent = i;
+                idCell.className = 'px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900';
+                row.appendChild(idCell);
+
+                const nomeCell = document.createElement('td');
+                nomeCell.textContent = `Nome ${i}`;
+                nomeCell.className = 'px-6 py-4 whitespace-nowrap text-sm text-gray-500';
+                row.appendChild(nomeCell);
+
+                const sobrenomeCell = document.createElement('td');
+                sobrenomeCell.textContent = `Sobrenome ${i}`;
+                sobrenomeCell.className = 'px-6 py-4 whitespace-nowrap text-sm text-gray-500';
+                row.appendChild(sobrenomeCell);
+
+                const emailCell = document.createElement('td');
+                emailCell.textContent = `email${i}@example.com`;
+                emailCell.className = 'px-6 py-4 whitespace-nowrap text-sm text-gray-500';
+                row.appendChild(emailCell);
+
+                const actionsCell = document.createElement('td');
+                actionsCell.className = 'px-6 py-4 whitespace-nowrap text-sm font-medium';
+
+                const editButton = document.createElement('button');
+                editButton.className = 'text-2xl text-indigo-600 hover:text-indigo-900 mr-2 border border bg-gray-200 px-2 py-1 rounded';
+                editButton.innerHTML = '<i class="fa fa-pencil"></i>';
+                editButton.setAttribute('onClick', `editRow(${i})`);
+                actionsCell.appendChild(editButton);
+
+                const deleteButton = document.createElement('button');
+                deleteButton.className = 'text-2xl text-red-600 hover:text-red-900 border border bg-gray-200 px-2 py-1 rounded';
+                deleteButton.setAttribute('onClick', `removeFromTable(${i})`);
+                deleteButton.innerHTML = '<i class="fa fa-trash"></i>';
+                actionsCell.appendChild(deleteButton);
+
+                row.appendChild(actionsCell);
+
+                tbody.appendChild(row);
+            }
+
+            table.appendChild(thead);
+            table.appendChild(tbody);
+
+            const container = document.createElement('div');
+            container.className = 'container mx-auto px-4 sm:px-8 py-8';
+            container.appendChild(table);
+
+            document.body.appendChild(container);
+        }
+
+        function editRow(id) {
+            const table = document.querySelector('table tbody');
+            const rows = table.rows;
+            for (let i = 0; i < rows.length; i++) {
+                if (rows[i].cells[0].textContent == id.toString()) {
+                    const row = rows[i];
+                    for (let j = 1; j < row.cells.length - 1; j++) {
+                        const cell = row.cells[j];
+                        const input = document.createElement('input');
+                        input.type = 'text';
+                        input.className = 'px-2 py-1 border rounded';
+                        input.value = cell.textContent;
+                        cell.textContent = '';
+                        cell.appendChild(input);
+                    }
+
+                    const actionCell = row.cells[row.cells.length - 1];
+                    actionCell.innerHTML = '';
+
+                    const saveButton = document.createElement('button');
+                    saveButton.className = 'text-2xl text-green-600 hover:text-green-900 mr-2 border border bg-gray-200 px-2 py-1 rounded';
+                    saveButton.innerHTML = '<i class="fa fa-check"></i>';
+                    saveButton.onclick = () => saveRow(id);
+                    actionCell.appendChild(saveButton);
+
+                    const cancelButton = document.createElement('button');
+                    cancelButton.className = 'text-2xl text-red-600 hover:text-red-900 border border bg-gray-200 px-2 py-1 rounded';
+                    cancelButton.innerHTML = '<i class="fa fa-times"></i>';
+                    cancelButton.onclick = () => cancelEditRow(id);
+                    actionCell.appendChild(cancelButton);
+
+                    break;
+                }
+            }
+        }
+
+        function saveRow(id) {
+            const table = document.querySelector('table tbody');
+            const rows = table.rows;
+            for (let i = 0; i < rows.length; i++) {
+                if (rows[i].cells[0].textContent == id.toString()) {
+                    const row = rows[i];
+                    for (let j = 1; j < row.cells.length - 1; j++) {
+                        const cell = row.cells[j];
+                        const input = cell.firstChild;
+                        cell.textContent = input.value;
+                    }
+
+                    const actionCell = row.cells[row.cells.length - 1];
+                    actionCell.innerHTML = '';
+
+                    const editButton = document.createElement('button');
+                    editButton.className = 'text-2xl text-indigo-600 hover:text-indigo-900 mr-2 border border bg-gray-200 px-2 py-1 rounded';
+                    editButton.innerHTML = '<i class="fa fa-pencil"></i>';
+                    editButton.setAttribute('onClick', `editRow(${id})`);
+                    actionCell.appendChild(editButton);
+
+                    const deleteButton = document.createElement('button');
+                    deleteButton.className = 'text-2xl text-red-600 hover:text-red-900 border border bg-gray-200 px-2 py-1 rounded';
+                    deleteButton.setAttribute('onClick', `removeFromTable(${id})`);
+                    deleteButton.innerHTML = '<i class="fa fa-trash"></i>';
+                    actionCell.appendChild(deleteButton);
+
+                    break;
+                }
+            }
+        }
+
+        function cancelEditRow(id) {
+            const table = document.querySelector('table tbody');
+            const rows = table.rows;
+            for (let i = 0; i < rows.length; i++) {
+                if (rows[i].cells[0].textContent == id.toString()) {
+                    const row = rows[i];
+                    for (let j = 1; j < row.cells.length - 1; j++) {
+                        const cell = row.cells[j];
+                        const input = cell.firstChild;
+                        cell.textContent = input.value;
+                    }
+
+                    const actionCell = row.cells[row.cells.length - 1];
+                    actionCell.innerHTML = '';
+
+                    const editButton = document.createElement('button');
+                    editButton.className = 'text-2xl text-indigo-600 hover:text-indigo-900 mr-2 border border bg-gray-200 px-2 py-1 rounded';
+                    editButton.innerHTML = '<i class="fa fa-pencil"></i>';
+                    editButton.setAttribute('onClick', `editRow(${id})`);
+                    actionCell.appendChild(editButton);
+
+                    const deleteButton = document.createElement('button');
+                    deleteButton.className = 'text-2xl text-red-600 hover:text-red-900 border border bg-gray-200 px-2 py-1 rounded';
+                    deleteButton.setAttribute('onClick', `removeFromTable(${id})`);
+                    deleteButton.innerHTML = '<i class="fa fa-trash"></i>';
+                    actionCell.appendChild(deleteButton);
+
+                    break;
+                }
+            }
+        }
+
+
+        function removeFromTable(id) {
+            const table = document.querySelector('table tbody');
+            const rows = table.rows;
+            for (let i = 0; i < rows.length; i++) {
+                if (rows[i].cells[0].textContent === id.toString()) {
+                    table.deleteRow(i);
+                    break;
+                }
+            }
+        }
+
+        window.onload = createTable;
+    </script>
+</body>
+
+</html>

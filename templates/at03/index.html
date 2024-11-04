@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 03</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+    <!-- 
+    criar uma rota web sem a tag table que exiba uma tabela com 997 linhas e 5 colunas
+    coluna 1: id
+    coluna 2: nome
+    coluna 3: sobrenome
+    coluna 4: email
+    coluna 5: ações
+    -->
+    <script>
+        function createTable() {
+            const table = document.createElement('table');
+            const thead = document.createElement('thead');
+            const tbody = document.createElement('tbody');
+
+            const headerRow = document.createElement('tr');
+            const headers = ['ID', 'Nome', 'Sobrenome', 'Email', 'Ações'];
+            headers.forEach(headerText => {
+                const th = document.createElement('th');
+                th.textContent = headerText;
+                headerRow.appendChild(th);
+            });
+            thead.appendChild(headerRow);
+
+            for (let i = 1; i <= 997; i++) {
+                const row = document.createElement('tr');
+
+                const idCell = document.createElement('td');
+                idCell.textContent = i;
+                row.appendChild(idCell);
+
+                const nomeCell = document.createElement('td');
+                nomeCell.textContent = `Nome ${i}`;
+                row.appendChild(nomeCell);
+
+                const sobrenomeCell = document.createElement('td');
+                sobrenomeCell.textContent = `Sobrenome ${i}`;
+                row.appendChild(sobrenomeCell);
+
+                const emailCell = document.createElement('td');
+                emailCell.textContent = `email${i}@example.com`;
+                row.appendChild(emailCell);
+
+                const acoesCell = document.createElement('td');
+                acoesCell.innerHTML = `
+                    <button><i class="fa fa-pencil"></i></button>
+                    <button onClick="removeFromTable(${i})"><i class="fa fa-trash"></i></button>
+                `;
+                row.appendChild(acoesCell);
+
+                tbody.appendChild(row);
+            }
+
+            table.appendChild(thead);
+            table.appendChild(tbody);
+            document.body.appendChild(table);
+        }
+
+        function removeFromTable(id) {
+            const table = document.querySelector('table tbody');
+            for (let i = 0; i < table.rows.length; i++) {
+                if (table.rows[i].cells[0].textContent === id.toString()) {
+                    table.deleteRow(i);
+                    break;
+                }
+            }
+        }
+
+        window.onload = createTable;
+    </script>
+</body>
+
+</html>

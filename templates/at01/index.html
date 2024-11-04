@@ -4,30 +4,54 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Atividade 01</title>
+    <style>
+      body, html {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+      }
+      canvas {
+        display: block;
+      }
+    </style>
   </head>
   <body>
     <!-- 
     Atividade 1: criar rota web html com a tag canvas onde o usuário pode 
     deslocar uma foto para a esquerda e direita com as setas do teclado
     -->
-    <canvas id="canvas" width="800" height="600"></canvas>
+    <canvas id="canvas"></canvas>
     <script>
       const FETCH_URL = "http://127.0.0.1:5000";
-      const canvas = document.getElementById("canvas");
-      const context = canvas.getContext("2d");
+      const IMG_URL = `${FETCH_URL}/static/imgs/placeholder.png`;
+
+      const canvas = document.getElementById('canvas');
+      const ctx = canvas.getContext('2d');
       const img = new Image();
-      img.src = `${FETCH_URL}/static/imgs/placeholder.png`;
+      let imgX = 0;
+      let imgY = 0;
+
+      img.src = IMG_URL;
       img.onload = () => {
-        context.drawImage(img, 0, 0, 800, 600);
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        ctx.drawImage(img, imgX, imgY);
       };
-      document.addEventListener("keydown", (event) => {
-        if (event.key === "ArrowRight") {
-          context.clearRect(0, 0, 800, 600);
-          context.drawImage(img, 10, 0, 800, 600);
-        } else if (event.key === "ArrowLeft") {
-          context.clearRect(0, 0, 800, 600);
-          context.drawImage(img, -10, 0, 800, 600);
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowLeft') {
+          imgX -= 10;
+        } else if (event.key === 'ArrowRight') {
+          imgX += 10;
+        } else if (event.key === 'ArrowUp') {
+          imgY -= 10;
+        } else if (event.key === 'ArrowDown') {
+          imgY += 10;
         }
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img, imgX, imgY);
       });
     </script>
   </body>

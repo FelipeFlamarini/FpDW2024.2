@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 04_2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body class="bg-gray-200 flex items-center justify-center min-h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-lg text-center max-w-md w-full">
+        <h1 class="text-2xl font-bold mb-4">Tire uma foto com sua câmera</h1>
+        <div class="mb-4">
+            <button id="startButton" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">Iniciar Webcam</button>
+            <button id="captureButton" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700 ml-2" disabled>Capturar Foto</button>
+        </div>
+        <div class="mb-4 relative ">
+            <video id="video" class="w-full h-auto max-h-64 rounded-lg shadow-lg bg-black" autoplay></video>
+            <i id="videoIcon" class="fa fa-video-camera text-white text-6xl absolute inset-0 flex items-center justify-center"></i>
+        </div>
+        <canvas id="canvas" class="hidden"></canvas>
+    </div>
+
+    <script>
+        const startButton = document.getElementById('startButton');
+        const captureButton = document.getElementById('captureButton');
+        const video = document.getElementById('video');
+        const videoIcon = document.getElementById('videoIcon');
+        const canvas = document.getElementById('canvas');
+        const context = canvas.getContext('2d');
+
+        startButton.addEventListener('click', async () => {
+            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+            video.srcObject = stream;
+            video.classList.remove('hidden');
+            videoIcon.classList.add('hidden');
+            captureButton.disabled = false;
+        });
+
+        captureButton.addEventListener('click', () => {
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            const dataURL = canvas.toDataURL('image/png');
+            const link = document.createElement('a');
+            link.href = dataURL;
+            link.download = 'captured_image.png';
+            link.click();
+        });
+    </script>
+</body>
+
+</html>

@@ -7,6 +7,10 @@ from aulas.au03.main import au03Blueprint
 
 # blueprints atividades
 from atividades.at01.main import at01Blueprint
+from atividades.at02.main import at02Blueprint
+from atividades.at03.main import at03Blueprint
+from atividades.at04.main import at04Blueprint
+from atividades.at05.main import at05Blueprint
 
 app = Flask(__name__)
 
@@ -21,6 +25,10 @@ app.register_blueprint(au03Blueprint)
 
 # blueprints atividades
 app.register_blueprint(at01Blueprint)
+app.register_blueprint(at02Blueprint)
+app.register_blueprint(at03Blueprint)
+app.register_blueprint(at04Blueprint)
+app.register_blueprint(at05Blueprint)
 
 if __name__ == "__main__":
     app.run(debug=True)

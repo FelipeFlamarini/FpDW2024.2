@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Atividade 04_1</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="flex flex-col items-center justify-center bg-gray-100 w-full h-full m-0 p-0 overflow-hidden">
+    <header class="w-full p-4 bg-blue-500 text-white text-center">
+        <p class="text-5xl font-bold">Controle o passarinho</p>
+    </header>
+    <div class="flex-grow w-full flex items-center justify-center">
+        <canvas id="canvas" class="border border-gray-300 shadow-lg"></canvas>
+    </div>
+    <script>
+        const FETCH_URL = "http://127.0.0.1:5000";
+        const IMG_URL = `${FETCH_URL}/static/imgs/bird.png`;
+        const BG_IMG_URL = `${FETCH_URL}/static/imgs/sky.png`;
+
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const img = new Image();
+        const bgImg = new Image();
+        let imgX = 0;
+        let imgY = 0;
+        let targetX = 0;
+        let targetY = 0;
+        let flip = false;
+
+        window.addEventListener("resize", resizeCanvas);
+
+        img.src = IMG_URL;
+        bgImg.src = BG_IMG_URL;
+
+        bgImg.onload = () => {
+            resizeCanvas();
+            requestAnimationFrame(animate);
+        };
+
+        function resizeCanvas() {
+            const headerHeight = document.querySelector('header').offsetHeight;
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight - headerHeight;
+            draw();
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(bgImg, 0, 0, canvas.width, canvas.height);
+
+            ctx.save();
+            if (flip) {
+                ctx.scale(-1, 1);
+                ctx.drawImage(img, -imgX - img.width, imgY);
+            } else {
+                ctx.drawImage(img, imgX, imgY);
+            }
+            ctx.restore();
+        }
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowLeft') {
+                targetX -= 60;
+                flip = false;
+            } else if (event.key === 'ArrowRight') {
+                targetX += 60;
+                flip = true;
+            } else if (event.key === 'ArrowUp') {
+                targetY -= 60;
+            } else if (event.key === 'ArrowDown') {
+                targetY += 60;
+            }
+        });
+
+        function animate() {
+            imgX += (targetX - imgX) * 0.1;
+            imgY += (targetY - imgY) * 0.1;
+
+            draw();
+
+            requestAnimationFrame(animate);
+        }
+    </script>
+</body>
+
+</html>

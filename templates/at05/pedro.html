@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body class="bg-gray-400">
+    <div class="grid grid-cols-2 max-w-7xl mx-auto gap-5 my-10">
+        <div class="row-span-2 bg-blue-700 p-10 rounded space-y-8 shadow-lg">
+            <div class="flex justify-between">
+                <div class="flex flex-col justify-center">
+                    <p id="name" class="text-white text-3xl"></p>
+                    <p id="main" class="text-white text-2xl"></p>
+                </div>
+                <img id="photo" class="rounded-full w-32 h-32 object-cover">
+            </div>
+
+            <div class="border-gray-400 border"></div>
+
+            <div class="flex flex-col">
+
+                <p class="text-white text-xl">Sobre</p>
+                <p id="about" class="text-white text-justify"></p>
+            </div>
+
+            <div class="border-gray-400 border"></div>
+
+            <div class="flex flex-col space-y-2">
+                <p class="text-white text-xl">Educação</p>
+                <ul id="educationList" class="space-y-2"></ul>
+            </div>
+        </div>
+
+        <div class="flex flex-col bg-white p-10 rounded shadow-lg">
+            <p class="text-3xl text-bold">Contatos</p>
+            <p class="text-lg space-x-2 flex items-center">
+                <i class="fa fa-phone-square text-3xl" aria-hidden="true"></i>
+                <span id="phone"></span>
+            </p>
+            <p class="text-lg space-x-2 flex items-center">
+                <i class="fa fa-envelope text-2xl" aria-hidden="true"></i>
+                <a id="email" class="text-blue-500 hover:underline"></a>
+            </p>
+            <p class="text-lg space-x-2 flex items-center">
+                <i class="fa fa-github-square text-3xl" aria-hidden="true"></i>
+                <a id="github" class="text-blue-500 hover:underline"></a>
+            </p>
+        </div>
+
+        <div class="grid grid-cols-2 bg-white p-10 rounded shadow-lg gap-5">
+            <div>
+                <p class="text-2xl">Hard skills</p>
+                <ul id="hardSkillsList" class="space-y-2"></ul>
+            </div>
+            <div>
+                <p class="text-2xl">Soft skills</p>
+                <ul id="softSkillsList" class="space-y-2"></ul>
+            </div>
+
+        </div>
+    </div>
+    <script>
+        const person = {
+            name: "Pedro Samuel Soares Simão",
+            photo: "/static/imgs/pedro.jpg",
+            age: 21,
+            phone: "(67) 9 9999-9999",
+            email: "pedro.simao@estudante.ifms.edu.br",
+            github: "github.com/PsSave",
+            hardSkills: [
+                "React",
+                "TypeScript",
+                "Python",
+                "Node",
+            ],
+            softSkills: [
+                "Trabalho em equipe",
+                "Comunicação",
+                "Proatividade",
+                "Resiliência",
+                "Adaptabilidade",
+            ],
+            main: "Desenvolvedor Fullstack",
+            about: "Desenvolvedor full stack em busca de novas oportunidades para aplicar habilidades em tecnologias diversas e contribuir para o crescimento de projetos inovadores.",
+            education: [
+                {
+                    institution: "Instituto Federal de Mato Grosso do Sul",
+                    course: "Tecnólogo em Análise e Desenvolvimento de Sistemas",
+                    status: "Cursando",
+                    startingYear: 2022,
+                    endingYear: 2025,
+                },
+            ],
+        };
+        document.title = person.name;
+
+        document.querySelector("#name").textContent = person.name;
+        document.querySelector("#main").textContent = person.main;
+        document.querySelector("#about").textContent = person.about;
+        document.querySelector("#phone").textContent = person.phone;
+        document.querySelector("#email").textContent = person.email;
+        document.querySelector("#github").textContent = person.github;
+        document.querySelector("#photo").src = person.photo;
+
+        const hardSkillsList = document.querySelector("#hardSkillsList");
+        person.hardSkills.forEach(skill => {
+            const li = document.createElement("li");
+            li.className = "bg-gray-100 p-2 rounded";
+            li.textContent = skill;
+            hardSkillsList.appendChild(li);
+        });
+
+        const softSkillsList = document.querySelector("#softSkillsList");
+        person.softSkills.forEach(skill => {
+            const li = document.createElement("li");
+            li.className = "bg-gray-100 p-2 rounded";
+            li.textContent = skill;
+            softSkillsList.appendChild(li);
+        });
+
+        const educationList = document.querySelector("#educationList");
+        person.education.forEach(education => {
+            const li = document.createElement("li");
+            li.className = "bg-gray-100 p-2 rounded";
+            li.innerHTML = `
+                <p class="text-xl">${education.course}</p>
+                <p>${education.institution}</p>
+                <p>${education.status}: ${education.startingYear} - ${education.endingYear}</p>
+            `;
+            educationList.appendChild(li);
+        });
+    </script>
+</body>
+
+</html>
