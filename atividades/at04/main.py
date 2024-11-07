@@ -11,4 +11,6 @@ def index():
 @at04Blueprint.route("/<n>")
 def number_template(n):
     print(n)
-    return render_template(f"at04/at04_{n}.html")
+    return render_template(
+        f"at04/at04_{n}.html",
+    )

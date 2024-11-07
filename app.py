@@ -12,6 +12,9 @@ from atividades.at03.main import at03Blueprint
 from atividades.at04.main import at04Blueprint
 from atividades.at05.main import at05Blueprint
 
+from atividades.login import login
+from atividades.create_template import create_template
+
 app = Flask(__name__)
 
 
@@ -29,6 +32,8 @@ app.register_blueprint(at02Blueprint)
 app.register_blueprint(at03Blueprint)
 app.register_blueprint(at04Blueprint)
 app.register_blueprint(at05Blueprint)
+app.register_blueprint(login)
+app.register_blueprint(create_template)
 
 if __name__ == "__main__":
     app.run(debug=True)
