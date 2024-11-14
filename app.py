@@ -4,6 +4,7 @@ from tqdm import tqdm
 
 # blueprints aulas
 from aulas.au03.main import au03Blueprint
+from aulas.au05.main import au05Blueprint
 
 # blueprints atividades
 from atividades.at01.main import at01Blueprint
@@ -16,6 +17,7 @@ from atividades.login import login
 from atividades.create_template import create_template
 
 app = Flask(__name__)
+app.secret_key = "verysecretkey"
 
 
 @app.get("/directories")
@@ -25,6 +27,7 @@ def directories():
 
 # blueprints aulas
 app.register_blueprint(au03Blueprint)
+app.register_blueprint(au05Blueprint)
 
 # blueprints atividades
 app.register_blueprint(at01Blueprint)
