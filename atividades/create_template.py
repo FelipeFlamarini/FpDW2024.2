@@ -14,7 +14,7 @@ def create_html(data: dict):
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{data["name"]}</title>
-        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="http://127.0.0.1:5000/static/scripts/tailwind.js"></script>
     </head>
     <body class="bg-gray-200">
         <div id="main-container" class="my-8 grid grid-cols-2 gap-4 max-w-2xl mx-auto">
