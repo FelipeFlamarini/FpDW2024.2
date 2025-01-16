@@ -11,13 +11,13 @@
 <body class="bg-gray-100 flex items-center justify-center h-screen">
     <div class="bg-white p-8 rounded-lg shadow-md w-96">
         {% if session['username']%}
-        <form action="/logout" class="bg-white flex justify-center items-center flex-col">
+        <form action="/au04/at01/logout" class="bg-white flex justify-center items-center flex-col">
             <h1 class="text-2xl font-bold mb-4">Bem-vindo, {{session['username']}}</h1>
             <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700">Logout</button>
         </form>
         {% else %}
         <h2 class="text-2xl font-bold mb-6 text-center">Formulário de Autenticação</h2>
-        <form id="authForm" action="/auth" method="post" class="space-y-4">
+        <form id="authForm" action="/au04/at01/auth" method="post" class="space-y-4">
             <div>
                 <label for="username" class="block text-sm font-medium text-gray-700">Usuário:</label>
                 <input type="text" id="username" name="username" required
@@ -54,7 +54,17 @@
                         messageDiv.textContent = 'Autenticação bem-sucedida!';
                         messageDiv.className = 'mt-4 text-center text-sm text-green-600';
                     } else {
-                        messageDiv.textContent = 'Falha na autenticação. Por favor, tente novamente.';
+                        switch (response.status) {
+                            case 401:
+                                messageDiv.textContent = 'Usuário ou senha inválidos.';
+                                break;
+                            case 403:
+                                messageDiv.textContent = 'Usuário excedeu 2 tentativas..';
+                                break;
+                            default:
+                                messageDiv.textContent = 'Falha na autenticação. Por favor, tente novamente.';
+                                break;
+                        }
                         messageDiv.className = 'mt-4 text-center text-sm text-red-600';
 
                     }

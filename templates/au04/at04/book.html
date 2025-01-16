@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Livro {{ id }}</title>
+</head>
+
+<body>
+    <h1>{{ book.title }}</h1>
+    <p><strong>Descrição:</strong> {{ book.description }}</p>
+    <p><strong>Autor:</strong> {{ book.author }}</p>
+    <p><strong>Data de publicação:</strong> {{ book.published_date }}</p>
+    <ul>
+        {% for genre in book.genres %}
+        <li>{{ genre }}</li>
+        {% endfor %}
+    </ul>
+
+</body>
+
+</html>
