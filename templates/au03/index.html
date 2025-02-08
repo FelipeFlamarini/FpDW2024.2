@@ -5,103 +5,95 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aula 03</title>
+    <script src="/static/scripts/tailwind.js"></script>
 </head>
 
-<body>
-    <h1>Aula 03 - 30/10/2024</h1>
-    <h2>Explicando o conceito de uma aplicação <em>web</em></h2>
-    <p><em>Requests</em> do cliente, <em>responses</em> do servidor</p>
-    <hr />
-    <h2>Iniciando servidor <em>Flask</em></h2>
-    <p>Pelo CLI do <em>Flask</em></p>
-    <p>
-        <code>
-            flask run --debug
-        </code>
-    </p>
-    <p>Pelo CLI do Python, desde que o script possua o <em>app.run(debug=True, host='0.0.0.0)</em></p>
-    <p>
-        <code>
-            python app.py
-        </code>
-    </p>
-    <p>
-        O argumento debug ativa o modo de desenvolvimento do Flask, fazendo com que o app reinicie sempre que um script
-        do app é alterado
-    </p>
-    <hr />
-    <h2>Criando uma rota básica</h2>
-    <p>
-        O Flask oferece um decorador para cada método HTTP.
-        Utilizando o decorador <em>get</em> na rota "/" (<em>root</em>)</p>
-    <p>
-        <code>
-        <p>@app.get("/")</p>
-        <p>def hello_world():</p>
-            <p>&emsp;return {"hello": "world"}</p>
-        </code>
-    </p>
-    <p>Utilizando o decorador <em>route</em>, que permite receber mais de um método de <em>request</em> na mesma rota
-    </p>
-    <p>
-        <code class="text-white">
-        <p>from flask import request</p>
-        <p>@app.route("/todos", methods=["GET", "POST"])</p>
-        <p>def todos():</p>
-            <p>&emsp;if request.method === POST:</p>
-                <p>&emsp;&emsp;db.add(request.values.get("todo"))</p>
-            <p>&emsp;elif request.method === GET:</p>
-                <p>&emsp;&emsp;return db.get("todos")</p>
-    </code>
-    </p>
-    <p>Se o argumento <em>methods</em> está ausente, por padrão o único método aceitado será GET.
-        O objeto <a
-            href="https://flask.palletsprojects.com/en/stable/quickstart/#accessing-request-data"><em>request</em></a> é
-        necessário para acessar o método atual e o <em>body</em> de um método <em>POST</em> ou <em>PUT</em>.
-        Também é possível receber mais de um método de <em>request</em> na mesma rota utilizando os decoradores
-        específicos para cada rota</p>
-    <p>
-        <code>
-            <p>from flask import request</p>
-            <p>@app.get("/todos")</p>
-            <p>def todos_get():</p>
-                <p>&emsp;return db.get("todos")</p>
-            <p>@app.post("/todos")</p>
-            <p>def todos_post():</p>
-            <p>&emsp;return db.add(request.values.get("todo"))</p>
-        </code>
-    </p>
-    <p>Também é possível acessar o <em>body</em> pela propriedade <a
-            href="https://flask.palletsprojects.com/en/stable/api/#flask.Request.form"><em>form</em></a>. Na verdade, a
-        propriedade <a href="https://flask.palletsprojects.com/en/stable/api/#flask.Request.values"><em>values</em></a>
-        é baseada na propriedade <em>form</em>.</p>
-    <hr />
-    <h2>Atividades</h2>
-    <ol>
-        <li>criar rota web html com a tag canvas onde o usuário pode deslocar uma foto para a esquerda e direita com as
-            setas do teclado</li>
-        <li>criar rota web html que permite ao usuário tirar uma foto com webcam</li>
-        <li>
-            <p>criar uma rota web sem a tag table que exiba uma tabela com 997 linhas e 5 colunas
-                coluna 1: id
-                coluna 2: nome
-                coluna 3: sobrenome
-                coluna 4: email
-                coluna 5: ações</p>
-        </li>
-        <li>
-            <p>criar 3 rotas, uma para cada atividade anterior, "bonita"</p>
-        </li>
-        <li>criar 6 rotas, sendo todas "bonitas", cada uma contendo currículo de um integrate do grupo.</li>
-    </ol>
-    <h2>Resultados</h2>
-    <ol>
-        <li><a href="/au03/at01">Atividade 01</a></li>
-        <li><a href="/au03/at02">Atividade 02</a></li>
-        <li><a href="/au03/at03">Atividade 03</a></li>
-        <li><a href="/au03/at04">Atividade 04</a></li>
-        <li><a href="/au03/at05">Atividade 05</a></li>
-    </ol>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-3xl">
+        <h1 class="text-3xl font-bold mb-4 text-center">Aula 03 - 30/10/2024</h1>
+        <h2 class="text-xl font-semibold mb-4">Explicando o conceito de uma aplicação <em>web</em></h2>
+        <p class="mb-4"><em>Requests</em> do cliente, <em>responses</em> do servidor</p>
+        <hr class="my-4" />
+        <h2 class="text-xl font-semibold mb-4">Iniciando servidor <em>Flask</em></h2>
+        <p class="mb-2">Pelo CLI do <em>Flask</em></p>
+        <p class="bg-gray-200 p-2 rounded mb-4"><code>flask run --debug</code></p>
+        <p class="mb-2">Pelo CLI do Python, desde que o script possua o <em>app.run(debug=True, host='0.0.0.0')</em></p>
+        <p class="bg-gray-200 p-2 rounded mb-4"><code>python app.py</code></p>
+        <p class="mb-4">O argumento debug ativa o modo de desenvolvimento do Flask, fazendo com que o app reinicie
+            sempre que um script do app é alterado</p>
+        <hr class="my-4" />
+        <h2 class="text-xl font-semibold mb-4">Criando uma rota básica</h2>
+        <p class="mb-2">O Flask oferece um decorador para cada método HTTP. Utilizando o decorador <em>get</em> na rota
+            "/" (<em>root</em>)</p>
+        <p class="bg-gray-200 p-2 rounded mb-4">
+            <code>
+                @app.get("/")<br>
+                def hello_world():<br>
+                &emsp;return {"hello": "world"}
+            </code>
+        </p>
+        <p class="mb-2">Utilizando o decorador <em>route</em>, que permite receber mais de um método de <em>request</em>
+            na mesma rota</p>
+        <p class="bg-gray-200 p-2 rounded mb-4">
+            <code>
+                from flask import request<br>
+                @app.route("/todos", methods=["GET", "POST"])<br>
+                def todos():<br>
+                &emsp;if request.method == "POST":<br>
+                &emsp;&emsp;db.add(request.values.get("todo"))<br>
+                &emsp;elif request.method == "GET":<br>
+                &emsp;&emsp;return db.get("todos")
+            </code>
+        </p>
+        <p class="mb-4">Se o argumento <em>methods</em> está ausente, por padrão o único método aceitado será GET. O
+            objeto <a href="https://flask.palletsprojects.com/en/stable/quickstart/#accessing-request-data"
+                class="text-blue-600 hover:underline"><em>request</em></a> é necessário para acessar o método atual e o
+            <em>body</em> de um método <em>POST</em> ou <em>PUT</em>. Também é possível receber mais de um método de
+            <em>request</em> na mesma rota utilizando os decoradores específicos para cada rota
+        </p>
+        <p class="bg-gray-200 p-2 rounded mb-4">
+            <code>
+                from flask import request<br>
+                @app.get("/todos")<br>
+                def todos_get():<br>
+                &emsp;return db.get("todos")<br>
+                @app.post("/todos")<br>
+                def todos_post():<br>
+                &emsp;return db.add(request.values.get("todo"))
+            </code>
+        </p>
+        <p class="mb-4">Também é possível acessar o <em>body</em> pela propriedade <a
+                href="https://flask.palletsprojects.com/en/stable/api/#flask.Request.form"
+                class="text-blue-600 hover:underline"><em>form</em></a>. Na verdade, a propriedade <a
+                href="https://flask.palletsprojects.com/en/stable/api/#flask.Request.values"
+                class="text-blue-600 hover:underline"><em>values</em></a> é baseada na propriedade <em>form</em>.</p>
+        <hr class="my-4" />
+        <h2 class="text-xl font-semibold mb-4">Atividades</h2>
+        <ol class="list-decimal list-inside space-y-2 mb-4">
+            <li>criar rota web html com a tag canvas onde o usuário pode deslocar uma foto para a esquerda e direita com
+                as setas do teclado</li>
+            <li>criar rota web html que permite ao usuário tirar uma foto com webcam</li>
+            <li>criar uma rota web sem a tag table que exiba uma tabela com 997 linhas e 5 colunas
+                <ul class="list-disc list-inside ml-6">
+                    <li>coluna 1: id</li>
+                    <li>coluna 2: nome</li>
+                    <li>coluna 3: sobrenome</li>
+                    <li>coluna 4: email</li>
+                    <li>coluna 5: ações</li>
+                </ul>
+            </li>
+            <li>criar 3 rotas, uma para cada atividade anterior, "bonita"</li>
+            <li>criar 6 rotas, sendo todas "bonitas", cada uma contendo currículo de um integrante do grupo.</li>
+        </ol>
+        <h2 class="text-xl font-semibold mb-4">Resultados</h2>
+        <ol class="list-decimal list-inside space-y-2">
+            <li><a href="/au03/at01" class="text-blue-600 hover:underline">Atividade 01</a></li>
+            <li><a href="/au03/at02" class="text-blue-600 hover:underline">Atividade 02</a></li>
+            <li><a href="/au03/at03" class="text-blue-600 hover:underline">Atividade 03</a></li>
+            <li><a href="/au03/at04" class="text-blue-600 hover:underline">Atividade 04</a></li>
+            <li><a href="/au03/at05" class="text-blue-600 hover:underline">Atividade 05</a></li>
+        </ol>
+    </div>
 </body>
 
 </html>

@@ -21,7 +21,7 @@ def index():
 def login_route():
     if request.method == "POST":
         if session.get("attempts", 0) >= MAX_ATTEMPTS:
-            return Response(status=403)  # Forbidden
+            return Response(status=403)
 
         body = request.form
 
@@ -29,7 +29,7 @@ def login_route():
             if user["username"] == body["username"]:
                 if user["password"] == body["password"]:
                     session["username"] = body["username"]
-                    session.pop("attempts", None)  # Reset attempts on successful login
+                    session.pop("attempts", None)
                     return Response(status=204)
                 session["attempts"] = session.get("attempts", 0) + 1
                 return Response(status=401)
@@ -42,5 +42,5 @@ def login_route():
 @at01Blueprint.route("/logout")
 def logout():
     session.pop("username", None)
-    session.pop("attempts", None)  # Reset attempts on logout
+    session.pop("attempts", None)
     return Response(status=204)

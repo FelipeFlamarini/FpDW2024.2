@@ -5,58 +5,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aula 04</title>
+    <script src="/static/scripts/tailwind.js"></script>
 </head>
 
-<body>
-    <h1>Aula 04 - 06/11/2024</h1>
-    <h2>Renderizando uma página HTML com Flask</h2>
-    <p>Por padrão, o Flask procura o arquivo na pasta <em>templates</em>.</p>
-    <p>
-        <code>
-            <p>from flask import render_template</p>
-            <p>@app.route("/")</p>
-            <p>def index():</p>
-            <p>&emsp;return render_template("index.html", nome=nome, idade=idade) # é possível passar parâmetros para a página e usá-los com jinja2</p>
-            
-        </code>
-    </p>
-    <h2>Atividades</h2>
-    <ol>
-        <li>
-            <p>Considerando um usuário e uma senha mocados (como uma variável temporária apenas para testes, que vai ser
-                removida no futuro), faça uma página de autenticação (login, senha) que retorne uma mensagem "Bom dia
-                {pessoa}"
-                se acertar usuário e senha, ou "Usuário e senha não conferem" se errar.</p>
-        </li>
-        <li>
-            <p>Limite as tentativas do usuário para 2 vezes.</p>
-        </li>
-        <li>
-            <p>Estilizar as páginas.</p>
-        </li>
-        <li>
-            <p>Escreva um script em Python que gere automaticamente um template HTML baseado em um formulário de input
-                de dados.
-                Esses inputs devem ser recebidos como um payload JSON.</p>
-
-        </li>
-        <li>
-            <p>Incremente o script da atividade 4 para que, após gerar o template, ele construa automaticamente uma rota
-                que
-                permita visualizar o template.</p>
-        </li>
-        <li>
-            <p>Crie uma classe "Pessoa" que encapsula dados do usuário e desenvolva uma função de autenticação</p>
-        </li>
-    </ol>
-    <h2>Resultados</h2>
-    <p>Como as atividades 2 e 3 eram incrementos da atividade 1, apenas o link da atividade 1 está disponível. O mesmo
-        acontece com as atividades 4, 5 e 6.</p>
-    <ol>
-        <li><a href="/au04/at01">Atividade 01</a></li>
-        <li><a href="/au04/at04">Atividade 04</a></li>
-    </ol>
-
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-3xl">
+        <h1 class="text-3xl font-bold mb-4 text-center">Aula 04 - 06/11/2024</h1>
+        <h2 class="text-xl font-semibold mb-4">Renderizando uma página HTML com Flask</h2>
+        <p class="mb-4">Por padrão, o Flask procura o arquivo na pasta <em>templates</em>.</p>
+        <p class="bg-gray-200 p-2 rounded mb-4">
+            <code>
+                from flask import render_template<br>
+                @app.route("/")<br>
+                def index():<br>
+                &emsp;return render_template("index.html", nome=nome, idade=idade)
+            </code>
+        </p>
+        <p class="mb-4">É possível passar parâmetros para a página e usá-los com jinja2 no HTML.</p>
+        <h2 class="text-xl font-semibold mb-4">Atividades</h2>
+        <ol class="list-decimal list-inside space-y-2 mb-4">
+            <li>
+                Considerando um usuário e uma senha mocados (como uma variável temporária apenas para testes, que vai
+                ser removida no futuro), faça uma página de autenticação (login, senha) que retorne uma mensagem
+                "Bom dia {pessoa}" se acertar usuário e senha, ou "Usuário e senha não conferem" se errar.
+            </li>
+            <li>
+                Limite as tentativas do usuário para 2 vezes.
+            </li>
+            <li>
+                Estilizar as páginas.
+            </li>
+            <li>
+                Escreva um script em Python que gere automaticamente um template HTML baseado em um formulário de
+                input de dados. Esses inputs devem ser recebidos como um payload JSON.
+            </li>
+            <li>
+                Incremente o script da atividade 4 para que, após gerar o template, ele construa automaticamente uma
+                rota que permita visualizar o template.
+            </li>
+            <li>
+                Crie uma classe "Pessoa" que encapsula dados do usuário e desenvolva uma função de autenticação
+            </li>
+        </ol>
+        <h2 class="text-xl font-semibold mb-4">Resultados</h2>
+        <p class="mb-4">Como as atividades 2 e 3 eram incrementos da atividade 1, apenas o link da atividade 1 está
+            disponível. O mesmo acontece com as atividades 4, 5 e 6.</p>
+        <ol class="list-decimal list-inside space-y-2">
+            <li><a href="at01" class="text-blue-600 hover:underline">Atividade 01</a></li>
+            <li><a href="at04" class="text-blue-600 hover:underline">Atividade 04</a></li>
+        </ol>
+    </div>
 </body>
 
 </html>

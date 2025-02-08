@@ -10,9 +10,10 @@
 
 <body class="bg-gray-100 flex items-center justify-center h-screen">
     <div class="bg-white p-8 rounded-lg shadow-md w-96">
-        {% if session['username']%}
-        <form action="/au04/at01/logout" class="bg-white flex justify-center items-center flex-col">
-            <h1 class="text-2xl font-bold mb-4">Bem-vindo, {{session['username']}}</h1>
+        {% if session['username'] %}
+        <form id="logoutForm" action="/au04/at01/logout" method="get"
+            class="bg-white flex justify-center items-center flex-col">
+            <h1 class="text-2xl font-bold mb-4">Bem-vindo, {{ session['username'] }}</h1>
             <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700">Logout</button>
         </form>
         {% else %}
@@ -38,7 +39,7 @@
     </div>
 
     <script>
-        document.getElementById('authForm').addEventListener('submit', function (event) {
+        document.getElementById('authForm').addEventListener('submit', (event) => {
             event.preventDefault();
             const form = event.target;
             const formData = new FormData(form);
@@ -53,13 +54,14 @@
                     if (response.ok) {
                         messageDiv.textContent = 'Autenticação bem-sucedida!';
                         messageDiv.className = 'mt-4 text-center text-sm text-green-600';
+                        window.location.reload();
                     } else {
                         switch (response.status) {
                             case 401:
                                 messageDiv.textContent = 'Usuário ou senha inválidos.';
                                 break;
                             case 403:
-                                messageDiv.textContent = 'Usuário excedeu 2 tentativas..';
+                                messageDiv.textContent = 'Usuário excedeu 2 tentativas.';
                                 break;
                             default:
                                 messageDiv.textContent = 'Falha na autenticação. Por favor, tente novamente.';
@@ -72,6 +74,21 @@
                 .catch(error => {
                     const messageDiv = document.getElementById('message');
                     messageDiv.textContent = 'Erro ao tentar autenticar. Por favor, tente novamente.';
+                    messageDiv.className = 'mt-4 text-center text-sm text-red-600';
+                });
+        });
+
+        document.getElementById('logoutForm').addEventListener('submit', (event) => {
+            event.preventDefault();
+            fetch(event.target.action, {
+                method: event.target.method
+            })
+                .then(() => {
+                    window.location.reload();
+                })
+                .catch(error => {
+                    const messageDiv = document.getElementById('message');
+                    messageDiv.textContent = 'Erro ao tentar fazer logout. Por favor, tente novamente.';
                     messageDiv.className = 'mt-4 text-center text-sm text-red-600';
                 });
         });

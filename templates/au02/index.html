@@ -5,32 +5,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aula 02</title>
+    <script src="/static/scripts/tailwind.js"></script>
 </head>
 
-<body>
-    <h1>Aula 02 - 23/10/2024</h1>
-    <h2>Gerenciando um ambiente virtual (<em>venv</em>)</h2>
-    <h3>Ativando o <em>venv</em></h3>
-    <p><code>
-source .venv/bin/activate</code></p>
-    <hr />
-    <h3>Instalando <em>Flask</em>, <em>SQLAlchemy</em> e <em>tqdm</em></h3>
-    <p><code>
-pip install -U flask Flask-SQLAlchemy tqdm</code></p>
-    <hr />
-    <h3>Criando a lista de dependências</h3>
-    <p><code>
-pip freeze &gt; requirements.txt</code></p>
-    <p>O <em>requirements.txt</em> também vai guardar todas as versões das dependências instaladas, de forma que
-        qualquer usuário que instale as dependências a partir do <em>requirements.txt</em> receba as versões corretas
-        das dependências.</p>
-    <hr />
-    <h3>Instalando dependências a partir do arquivo <em>requirements.txt</em></h3>
-    <p><code>
-pip install -r requirements.txt</code></p>
-    <hr />
-    <h2>Definindo o tema e grupo do projeto</h2>
-    <p>Meu grupo: sistema de chamada por câmeras</p>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-2xl">
+        <h1 class="text-3xl font-bold mb-4 text-center">Aula 02 - 23/10/2024</h1>
+        <h2 class="text-xl font-semibold mb-4">Gerenciando um ambiente virtual (<em>venv</em>)</h2>
+        <h3 class="text-lg font-semibold mb-2">Ativando o <em>venv</em></h3>
+        <p class="bg-gray-200 p-2 rounded"><code>source .venv/bin/activate</code></p>
+        <hr class="my-4" />
+        <h3 class="text-lg font-semibold mb-2">Instalando <em>Flask</em>, <em>SQLAlchemy</em> e <em>tqdm</em></h3>
+        <p class="bg-gray-200 p-2 rounded"><code>pip install -U flask Flask-SQLAlchemy tqdm</code></p>
+        <hr class="my-4" />
+        <h3 class="text-lg font-semibold mb-2">Criando a lista de dependências</h3>
+        <p class="bg-gray-200 p-2 rounded"><code>pip freeze &gt; requirements.txt</code></p>
+        <p class="mt-2">O <em>requirements.txt</em> também vai guardar todas as versões das dependências instaladas, de
+            forma que qualquer usuário que instale as dependências a partir do <em>requirements.txt</em> receba as
+            versões corretas das dependências.</p>
+        <hr class="my-4" />
+        <h3 class="text-lg font-semibold mb-2">Instalando dependências a partir do arquivo <em>requirements.txt</em>
+        </h3>
+        <p class="bg-gray-200 p-2 rounded"><code>pip install -r requirements.txt</code></p>
+        <hr class="my-4" />
+        <h2 class="text-xl font-semibold mb-4">Definindo o tema e grupo do projeto</h2>
+        <p>Meu grupo: sistema de chamada por câmeras</p>
+    </div>
 </body>
 
 </html>

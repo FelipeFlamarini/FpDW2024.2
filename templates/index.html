@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfólio</title>
+    <script src="/static/scripts/tailwind.js"></script>
 </head>
-<body>
-    <h1>Meu portfólio</h1>
-    <ol>
-        <li><a href="/au01">Aula 01</a></li>
-        <li><a href="/au02">Aula 02</a></li>
-        <li><a href="/au03">Aula 03</a></li>
-        <li><a href="/au04">Aula 04</a></li>
-        <li><a href="/au05">Aula 05</a></li>
-    </ol>
+
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+        <h1 class="text-3xl font-bold mb-6 text-center">Meu Portfólio</h1>
+        <ol class="list-decimal list-inside space-y-2">
+            <li><a href="/au01" class="text-blue-600 hover:underline">Aula 01</a></li>
+            <li><a href="/au02" class="text-blue-600 hover:underline">Aula 02</a></li>
+            <li><a href="/au03" class="text-blue-600 hover:underline">Aula 03</a></li>
+            <li><a href="/au04" class="text-blue-600 hover:underline">Aula 04</a></li>
+            <li><a href="/au05" class="text-blue-600 hover:underline">Aula 05</a></li>
+        </ol>
+    </div>
 </body>
+
 </html>
