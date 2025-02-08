@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload de Fotos</title>
+    <script src="/static/scripts/tailwind.js"></script>
+</head>
+
+<body class="bg-gray-100">
+    <div class="container mx-auto mt-20">
+        <div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
+            <h2 class="text-2xl font-bold mb-6 text-center">Upload de Fotos</h2>
+            <form id="uploadForm" action="/ex03/upload" method="post" enctype="multipart/form-data">
+                <div class="mb-4">
+                    <label for="file" class="block text-gray-700">Escolha o arquivo</label>
+                    <input type="file" name="file" id="file" class="w-full p-2 border border-gray-300 rounded-lg"
+                        required>
+                </div>
+                <button type="submit" class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg">Upload</button>
+            </form>
+            <div id="message" class="mt-4"></div>
+            <div class="mt-6">
+                <h2 class="text-2xl font-bold mb-6 text-center">Arquivos Enviados</h2>
+                <div id="filesContainer">
+                    {% for file in uploaded_files %}
+                    <div class="p-4 mb-4 text-sm text-gray-700 bg-gray-100 rounded-lg">
+                        {{ file.filename }} - {{ file.timestamp.strftime('%d-%m-%Y %H:%M:%S') }} -
+                        <a href="{{ url_for('static', filename='uploads/' ~ file.filename) }}"
+                            download="{{ file.filename }}" class="text-blue-600">Download</a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.querySelector("#uploadForm").addEventListener("submit", async (event) => {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            await fetch("/exam/ex03/upload", {
+                method: "POST",
+                body: formData
+            }).then(() => {
+                window.location.reload()
+            })
+        });
+    </script>
+</body>
+
+</html>
