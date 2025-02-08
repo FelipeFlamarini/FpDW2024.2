@@ -5,6 +5,11 @@ from aulas.au03.atividades import at01, at02, at03, at04, at05
 au03Blueprint = Blueprint("au03", __name__, url_prefix="/au03")
 
 
+@au03Blueprint.route("/")
+def index():
+    return render_template("au03/index.html")
+
+
 @au03Blueprint.route("/contact")
 def contact():
     return {
@@ -17,8 +22,8 @@ def contact():
     }
 
 
-@au03Blueprint.route("/")
-def index():
+@au03Blueprint.route("/contact_template")
+def contact_template():
     return render_template("au03/contact.html")
 
 

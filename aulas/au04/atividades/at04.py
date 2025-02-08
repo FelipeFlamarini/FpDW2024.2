@@ -22,9 +22,8 @@ at04Blueprint = Blueprint("at04", __name__, url_prefix="/at04")
 @at04Blueprint.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "GET":
-        return render_template("/au04/at04/index.html")
+        return render_template("/au04/at04/index.html", books=books)
     if request.method == "POST":
-        global books
         request_data = {**request.form}
         genres = request_data.pop("genres", "").split(",")
         books.append(Book(**request_data, genres=genres))
