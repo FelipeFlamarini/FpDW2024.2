@@ -8,12 +8,55 @@
 </head>
 
 <body>
-    <h1>Aula 04</h1>
+    <h1>Aula 04 - 06/11/2024</h1>
+    <h2>Renderizando uma página HTML com Flask</h2>
+    <p>Por padrão, o Flask procura o arquivo na pasta <em>templates</em>.</p>
+    <p>
+        <code>
+            <p>from flask import render_template</p>
+            <p>@app.route("/")</p>
+            <p>def index():</p>
+            <p>&emsp;return render_template("index.html", nome=nome, idade=idade) # é possível passar parâmetros para a página e usá-los com jinja2</p>
+            
+        </code>
+    </p>
     <h2>Atividades</h2>
+    <ol>
+        <li>
+            <p>Considerando um usuário e uma senha mocados (como uma variável temporária apenas para testes, que vai ser
+                removida no futuro), faça uma página de autenticação (login, senha) que retorne uma mensagem "Bom dia
+                {pessoa}"
+                se acertar usuário e senha, ou "Usuário e senha não conferem" se errar.</p>
+        </li>
+        <li>
+            <p>Limite as tentativas do usuário para 2 vezes.</p>
+        </li>
+        <li>
+            <p>Estilizar as páginas.</p>
+        </li>
+        <li>
+            <p>Escreva um script em Python que gere automaticamente um template HTML baseado em um formulário de input
+                de dados.
+                Esses inputs devem ser recebidos como um payload JSON.</p>
+
+        </li>
+        <li>
+            <p>Incremente o script da atividade 4 para que, após gerar o template, ele construa automaticamente uma rota
+                que
+                permita visualizar o template.</p>
+        </li>
+        <li>
+            <p>Crie uma classe "Pessoa" que encapsula dados do usuário e desenvolva uma função de autenticação</p>
+        </li>
+    </ol>
+    <h2>Resultados</h2>
+    <p>Como as atividades 2 e 3 eram incrementos da atividade 1, apenas o link da atividade 1 está disponível. O mesmo
+        acontece com as atividades 4, 5 e 6.</p>
     <ol>
         <li><a href="/au04/at01">Atividade 01</a></li>
         <li><a href="/au04/at04">Atividade 04</a></li>
     </ol>
+
 </body>
 
 </html>

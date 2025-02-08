@@ -9,7 +9,7 @@ from flask import render_template
 
 @app.route("/")
 def index():
-    return render_template("index.html", nome=nome, idade=idade) # é possível passar parâmetros para a página com e usá-los com jinja2 
+    return render_template("index.html", nome=nome, idade=idade) # é possível passar parâmetros para a página e usá-los com jinja2 
 ```
 
 ## Atividades

@@ -8,7 +8,29 @@
 </head>
 
 <body>
-    <h1>Aula 02</h1>
+    <h1>Aula 02 - 23/10/2024</h1>
+    <h2>Gerenciando um ambiente virtual (<em>venv</em>)</h2>
+    <h3>Ativando o <em>venv</em></h3>
+    <p><code>
+source .venv/bin/activate</code></p>
+    <hr />
+    <h3>Instalando <em>Flask</em>, <em>SQLAlchemy</em> e <em>tqdm</em></h3>
+    <p><code>
+pip install -U flask Flask-SQLAlchemy tqdm</code></p>
+    <hr />
+    <h3>Criando a lista de dependências</h3>
+    <p><code>
+pip freeze &gt; requirements.txt</code></p>
+    <p>O <em>requirements.txt</em> também vai guardar todas as versões das dependências instaladas, de forma que
+        qualquer usuário que instale as dependências a partir do <em>requirements.txt</em> receba as versões corretas
+        das dependências.</p>
+    <hr />
+    <h3>Instalando dependências a partir do arquivo <em>requirements.txt</em></h3>
+    <p><code>
+pip install -r requirements.txt</code></p>
+    <hr />
+    <h2>Definindo o tema e grupo do projeto</h2>
+    <p>Meu grupo: sistema de chamada por câmeras</p>
 </body>
 
 </html>

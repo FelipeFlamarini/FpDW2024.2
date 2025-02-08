@@ -23,7 +23,7 @@ Não deixe seu back-end morrer
 - Fazer a integração de autenticação do front-end e back-end
 - Acrescentar ao parâmetro "methods" da rota a lista methods=["POST"]
 
-## Tarefas
+## Atividades em casa
 
 1. Fazer as validações, no back-end, verificando se usuário e senha foram enviados ao servidor
 2. Tratar exceções para evitar que seja exibida a mensagem "Method not allowed"
