@@ -11,6 +11,7 @@
     <p><strong>Descrição:</strong> {{ book.description }}</p>
     <p><strong>Autor:</strong> {{ book.author }}</p>
     <p><strong>Data de publicação:</strong> {{ book.published_date }}</p>
+    <p><strong>Gêneros:</strong></p>
     <ul>
         {% for genre in book.genres %}
         <li>{{ genre }}</li>

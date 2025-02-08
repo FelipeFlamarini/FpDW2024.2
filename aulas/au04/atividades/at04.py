@@ -35,8 +35,8 @@ def index():
 def get_book(id: int):
     global books
     try:
-        return render_template(
-            "au04/at04/book.html", book=books[id].model_dump(), id=id
-        )
+        book = books[id].model_dump()
+        book['published_date'] = book['published_date'].strftime('%d/%m/%Y')
+        return render_template("au04/at04/book.html", book=book, id=id)
     except IndexError:
         return Response(status=HTTPStatus.NOT_FOUND)

@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Atividade 04_1</title>
-    <script src="http://127.0.0.1:5000/static/scripts/tailwind.js"></script>
+    <script src="/static/scripts/tailwind.js"></script>
 </head>
 
 <body class="flex flex-col items-center justify-center bg-gray-100 w-full h-full m-0 p-0 overflow-hidden">
@@ -16,9 +16,8 @@
         <canvas id="canvas" class="border border-gray-300 shadow-lg"></canvas>
     </div>
     <script>
-        const FETCH_URL = "http://127.0.0.1:5000";
-        const IMG_URL = `${FETCH_URL}/static/imgs/bird.png`;
-        const BG_IMG_URL = `${FETCH_URL}/static/imgs/sky.png`;
+        const IMG_URL = `/static/imgs/bird.png`;
+        const BG_IMG_URL = `/static/imgs/sky.png`;
 
         const canvas = document.getElementById('canvas');
         const ctx = canvas.getContext('2d');

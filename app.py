@@ -4,6 +4,7 @@ from aulas.au01.main import au01Blueprint
 from aulas.au02.main import au02Blueprint
 from aulas.au03.main import au03Blueprint
 from aulas.au04.main import au04Blueprint
+from aulas.au05.main import au05Blueprint
 
 
 app = Flask(__name__)
@@ -19,7 +20,7 @@ app.register_blueprint(au01Blueprint)
 app.register_blueprint(au02Blueprint)
 app.register_blueprint(au03Blueprint)
 app.register_blueprint(au04Blueprint)
-
+app.register_blueprint(au05Blueprint)
 
 if __name__ == "__main__":
     app.run(debug=True)

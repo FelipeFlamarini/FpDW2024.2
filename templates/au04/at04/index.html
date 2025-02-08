@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerando um template</title>
-    <script src="http://127.0.0.1:5000/static/scripts/tailwind.js"></script>
+    <script src="/static/scripts/tailwind.js"></script>
 </head>
 
 <body class="max-w-sm mx-auto mt-4 space-y-8">
@@ -21,10 +21,14 @@
         <button type="submit" class="p-1 rounded bg-green-500 w-full">Enviar</button>
     </form>
     <div>
+        {% if books %}
         <h2>Livros criados</h2>
         {% for book in books %}
         <li><a href="/au04/at04/{{ loop.index0 }}">{{ book.title }}</a></li>
         {% endfor %}
+        {% else %}
+        <p>Nenhum livro criado</p>
+        {% endif %}
     </div>
     <script>
         document.querySelector("#templateForm").addEventListener("submit", function (event) {
